@@ -32,3 +32,23 @@ void CSQL::innsertPerson(const string &name, int age)
         std::cerr << "Erreur lors de l'insertion des données : " << e.what() << std::endl;
     }
 }
+
+void CSQL::selectPerson()
+{
+    try{
+    pstmt = con->prepareStatement("SELECT * FROM PERSON");
+    sql::ResultSet* res = pstmt->executeQuery();
+
+    while(res->next()){
+        std::cout << "ID: " << res->getInt("ID") << ", ";
+        std::cout << "Name: " << res->getString("NAME") << ", ";
+        std::cout << "Age: " << res->getInt("AGE") << std::endl;
+    }
+    delete res;
+    delete pstmt;
+    }
+    catch(sql::SQLException& e){
+        std::cerr<<e.what()<<std::endl;
+    }
+    
+}

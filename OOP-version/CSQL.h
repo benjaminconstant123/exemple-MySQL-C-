@@ -18,6 +18,7 @@ public:
     CSQL(const string& host, const string& user, const string& password, const string& database);
     ~CSQL();
     void innsertPerson(const string& name, int age);
+    void selectPerson();
 
 private:
     sql::mysql::MySQL_Driver* driver;
